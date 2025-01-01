@@ -5,13 +5,11 @@ tag.src = "https://www.youtube.com/iframe_api";
 let firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// Global variables for YouTube players
-let player1, player2;
-let currentTrack = 1; // Track which player we're setting up (1 or 2)
 
-// Initialize YouTube players when API is ready
+let player1, player2;
+let currentTrack = 1; 
+
 function onYouTubeIframeAPIReady() {
-    // Create empty players initially
     player1 = createPlayer('player1');
     player2 = createPlayer('player2');
 }
@@ -84,9 +82,8 @@ function onPlayerError(event) {
 
 // Search YouTube for videos
 async function searchYouTube(query) {
-    const API_KEY = 'AIzaSyDn4JZCa_xXn6jc6mwj6Ge1Kw9YvJ9T6OU'; // Replace with your API key
+    const API_KEY = 'AIzaSyDn4JZCa_xXn6jc6mwj6Ge1Kw9YvJ9T6OU'; 
     try {
-        // Add videoEmbeddable=true to only get videos that can be embedded
         const response = await fetch(
             `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&videoEmbeddable=true&videoCategoryId=10&key=${API_KEY}`
         );
@@ -97,7 +94,6 @@ async function searchYouTube(query) {
 
         const data = await response.json();
 
-        // Get additional video details to verify availability
         const videoIds = data.items.map(item => item.id.videoId).join(',');
         const videoDetailsResponse = await fetch(
             `https://www.googleapis.com/youtube/v3/videos?part=status,player&id=${videoIds}&key=${API_KEY}`
@@ -109,7 +105,6 @@ async function searchYouTube(query) {
 
         const videoDetails = await videoDetailsResponse.json();
 
-        // Filter out any videos that aren't embeddable or are age-restricted
         const availableVideos = data.items.filter(item => {
             const videoDetail = videoDetails.items.find(detail => detail.id === item.id.videoId);
             return videoDetail && videoDetail.status.embeddable;
@@ -208,11 +203,9 @@ function displaySearchResults(results) {
 `;
 
         resultItem.addEventListener('click', () => {
-            // Clear any existing error messages
             const errorMessages = document.querySelectorAll('.error-message');
             errorMessages.forEach(msg => msg.remove());
 
-            // Load video into current player
             if (currentTrack === 1) {
                 player1.loadVideoById({
                     videoId: result.id.videoId,
