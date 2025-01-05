@@ -6,39 +6,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Music Mashup Generator</title>
     <link rel="stylesheet" href="app.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    <h1 style="text-align: center;
-    font-style: italic;
-    font-variation-settings: 'wght' 850;">Music Mashup Generator</h1>
+    <header>
+        <h1>🎵 Music Mashup Generator 🎶</h1>
+    </header>
 
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search for a song...">
-        <button id="searchButton">Search</button>
-        <div id="searchResults"></div>
-    </div>
-
-    <div class="players-container">
-        <div class="player">
-            <h3>Song 1</h3>
-            <div id="player1"></div>
-            <input type="range" id="volume1" class="volume-slider" min="0" max="100" value="50">
-            <div>Volume: <span id="volume1Value">50</span>%</div>
+    <main>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search for a song...">
+            <button id="searchButton">Search</button>
+            <div id="searchResults"></div>
         </div>
-        <div class="player">
-            <h3>Song 2</h3>
-            <div id="player2"></div>
-            <input type="range" id="volume2" class="volume-slider" min="0" max="100" value="50">
-            <div>Volume: <span id="volume2Value">50</span>%</div>
-        </div>
-    </div>
 
-    <div class="controls">
-        <button id="playBoth">Play Both</button>
-        <button id="pauseBoth">Pause Both</button>
-        <button id="resetBoth">Reset Both</button>
-    </div>
+        <section class="players-container">
+            <div class="player">
+                <h3>Song 1</h3>
+                <div id="player1" class="video-player"></div>
+                <input type="range" id="volume1" class="volume-slider" min="0" max="100" value="50">
+                <div class="volume-label">Volume: <span id="volume1Value">50</span>%</div>
+            </div>
+            <div class="player">
+                <h3>Song 2</h3>
+                <div id="player2" class="video-player"></div>
+                <input type="range" id="volume2" class="volume-slider" min="0" max="100" value="50">
+                <div class="volume-label">Volume: <span id="volume2Value">50</span>%</div>
+            </div>
+        </section>
+
+        <div class="controls">
+            <button id="playBoth" class="control-button">Play Both</button>
+            <button id="pauseBoth" class="control-button">Pause Both</button>
+            <button id="resetBoth" class="control-button">Reset Both</button>
+        </div>
+    </main>
+
+    <footer>
+        <p>Music Mashup Generator</p>
+    </footer>
 
     <script src="app.js"></script>
 </body>
